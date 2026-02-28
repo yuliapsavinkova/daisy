@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Yulia — Long-term live-in house sitter</title>
+    <title>Yulia — Long-Term Live-In House &amp; Pet Sitter</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -11,27 +11,88 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="./style.css" />
+    <link rel="stylesheet" href="./carousel.css" />
   </head>
   <body>
+    <div class="banner">
+      <span class="banner-dot"></span>
+      Currently based in California — reach out with your dates and location
+    </div>
+
     <div class="hero">
-      <div class="hero-bg"></div>
-      <div class="hero-tint"></div>
       <div class="hero-body">
+        <input class="carousel-radio" type="radio" name="carousel" id="cs1" checked />
+        <input class="carousel-radio" type="radio" name="carousel" id="cs2" />
+        <input class="carousel-radio" type="radio" name="carousel" id="cs3" />
+        <input class="carousel-radio" type="radio" name="carousel" id="cs4" />
+        <input class="carousel-radio" type="radio" name="carousel" id="cs5" />
+
+        <div class="carousel-wrap">
+          <div class="carousel-viewport">
+            <div class="carousel-track">
+              <div class="carousel-slide"><img src="/photo-1.jpg" alt="" /></div>
+              <div class="carousel-slide"><img src="/photo-2.jpg" alt="" /></div>
+              <div class="carousel-slide"><img src="/photo-3.jpg" alt="" /></div>
+              <div class="carousel-slide"><img src="/photo-4.jpg" alt="" /></div>
+              <div class="carousel-slide"><img src="/photo-5.jpg" alt="" /></div>
+            </div>
+          </div>
+
+          <div class="carousel-prev-wrap">
+            <label for="cs5">&#8592;</label>
+            <label for="cs1">&#8592;</label>
+            <label for="cs2">&#8592;</label>
+            <label for="cs3">&#8592;</label>
+            <label for="cs4">&#8592;</label>
+          </div>
+          <div class="carousel-next-wrap">
+            <label for="cs2">&#8594;</label>
+            <label for="cs3">&#8594;</label>
+            <label for="cs4">&#8594;</label>
+            <label for="cs5">&#8594;</label>
+            <label for="cs1">&#8594;</label>
+          </div>
+
+          <div class="carousel-dots">
+            <label for="cs1"></label>
+            <label for="cs2"></label>
+            <label for="cs3"></label>
+            <label for="cs4"></label>
+            <label for="cs5"></label>
+          </div>
+        </div>
+
         <h1>Yulia</h1>
         <p class="hero-headline">
-          <span class="hero-headline-main">Long-Term Live-In House & Pet Sitter</span
+          <span class="hero-headline-main">Long-Term Live-In House &amp; Pet Sitter</span
           ><span class="hero-headline-sub">so you can travel with complete peace of mind</span>
         </p>
-        <p class="eyebrow">How it works</p>
-        <ul class="hero-list">
-          <li>I live in your home full time</li>
-          <li>Your pets stay in their home &amp; routine</li>
-          <li>Your home stays secure &amp; maintained</li>
-          <li>You get updates with photos &amp; videos</li>
-        </ul>
       </div>
-      <div class="scroll-dots"><span></span><span></span><span></span></div>
     </div>
+
+    <section class="how-it-works">
+      <div class="wrap wrap-narrow">
+        <p class="label">How it works</p>
+        <div class="steps-grid">
+          <div class="step">
+            <span class="step-n">01</span>
+            <p>I live in your home full time</p>
+          </div>
+          <div class="step">
+            <span class="step-n">02</span>
+            <p>Your pets stay in their home &amp; routine</p>
+          </div>
+          <div class="step">
+            <span class="step-n">03</span>
+            <p>Your home stays secure &amp; maintained</p>
+          </div>
+          <div class="step">
+            <span class="step-n">04</span>
+            <p>You get updates with photos &amp; videos</p>
+          </div>
+        </div>
+      </div>
+    </section>
 
     <section>
       <div class="wrap wrap-mid">
@@ -45,7 +106,6 @@
               <li>Brushing and grooming</li>
               <li>Playtime and companionship</li>
               <li>Following existing routines</li>
-              <!-- <li>Sharing the bed if that's their habit</li> -->
             </ul>
           </div>
           <div>
@@ -55,6 +115,7 @@
               <li>Collecting mail</li>
               <li>Keeping the home tidy and clean</li>
               <li>Regular photo and video updates</li>
+              <li>Reporting any home issues</li>
             </ul>
           </div>
           <div>
@@ -72,8 +133,9 @@
             <ul>
               <li>Plants-only sits welcome</li>
               <li>Fish, reptiles, or exotic animals</li>
-              <li>Empty homes requiring full-time presence</li>
+              <li>Empty homes requiring presence</li>
               <li>Managing scheduled maintenance visits</li>
+              <li>Light garden care</li>
             </ul>
           </div>
         </div>
@@ -89,9 +151,10 @@
             <p class="price">$0</p>
             <p class="plan-desc">Via TrustedHousesitters.</p>
             <ul>
-              <li>Only works if your dates/city align with my current journey</li>
-              <li>Perfect for popular locations and destinations</li>
-              <li>I will need personal flexibility to leave to explore</li>
+              <li>Think "I choose you"</li>
+              <li>All basic services included</li>
+              <li>Your pets can be left alone for 4–6 hours for me to explore</li>
+              <li>Perfect for popular destinations</li>
               <li>You must be a THS member to invite me</li>
               <li>
                 I offer a
@@ -118,10 +181,11 @@
             <p class="price">$30 <span>/ day</span></p>
             <p class="plan-desc">Direct booking — no platform, no middleman</p>
             <ul>
-              <li>Full presence, no travel agenda</li>
-              <li>Dates and location set around you</li>
+              <li>Think "You choose me"</li>
+              <li>All basic services included</li>
+              <li>Your pets never left alone for more than a couple of hours</li>
+              <li>Perfect for unpopular/remote locations</li>
               <li>Private arrangement — no platform fees</li>
-              <li>$30 a day, that's only $900 a month</li>
               <li>Minimum 2 weeks, or $400 flat for shorter stays</li>
             </ul>
             <a href="#contact" class="btn btn-fill" data-plan="Standard ($30/day)">Get Standard</a>
@@ -129,12 +193,15 @@
 
           <div class="plan">
             <h3>Custom</h3>
-            <p class="price">Let's talk</p>
+            <p class="price">$30+ <span>/ day</span></p>
             <p class="plan-desc">Price tailored to your needs</p>
             <ul>
-              <li>Needs outside standard services</li>
-              <li>Specialised care, hospital appointments</li>
+              <li>Needs outside my basic services</li>
               <li>Hard to reach locations</li>
+              <li>
+                Care outside basic: hospital appointments, dogs need to be walked separately, can
+                not be left alone at all
+              </li>
               <li>Additional household tasks or coordination</li>
             </ul>
             <a href="#contact" class="btn btn-outline" data-plan="Custom">Get Custom</a>
@@ -150,11 +217,10 @@
           <div class="faq-item">
             <dt>Why live in full time instead of drop-in visits?</dt>
             <dd>
-              Routine and presence. Staying in the home keeps your pets’ schedule consistent and
+              Routine and presence. Staying in the home keeps your pets' schedule consistent and
               avoids the stress that comes from long gaps alone.
             </dd>
           </div>
-
           <div class="faq-item">
             <dt>Do you sit in any home?</dt>
             <dd>
@@ -162,16 +228,14 @@
               would my own, and expect the same standard.
             </dd>
           </div>
-
           <div class="faq-item">
             <dt>I have multiple dogs — is the price still $30 a day?</dt>
             <dd>
               Yes. If they can be walked together, the rate remains $30 per day. If they require
-              separate walks due to size, temperament, or training, we’ll adjust the rate
+              separate walks due to size, temperament, or training, we'll adjust the rate
               accordingly.
             </dd>
           </div>
-
           <div class="faq-item">
             <dt>Why the $30 charge if I can book you through TrustedHousesitters?</dt>
             <dd>
@@ -179,19 +243,16 @@
               THS member and pay the platform fee.
             </dd>
           </div>
-
           <div class="faq-item">
             <dt>How do we confirm a booking?</dt>
             <dd>
               We schedule a video call, agree on expectations, and confirm with a written agreement.
             </dd>
           </div>
-
           <div class="faq-item">
             <dt>Do you have references or background checks?</dt>
             <dd>Yes. References and background verification are available upon request.</dd>
           </div>
-
           <div class="faq-item">
             <dt>What happens in an emergency?</dt>
             <dd>
@@ -229,6 +290,13 @@
             <p class="author">James — Carlsbad, CA</p>
           </div>
         </div>
+        <a
+          href="https://www.trustedhousesitters.com/house-and-pet-sitters/united-states/california/san-francisco/l/6526245/"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="reviews-link"
+          >See full verified reviews on TrustedHousesitters →</a
+        >
       </div>
     </section>
 
@@ -290,7 +358,7 @@
     </section>
 
     <footer>
-      <span>Yulia — Long-term live-in house sitter</span>
+      <span>Yulia — Long-Term Live-In House &amp; Pet Sitter</span>
       <span>yulia.sitterjourney.com</span>
     </footer>
 
