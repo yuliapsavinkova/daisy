@@ -1,15 +1,5 @@
-/* ─── CSS-only sliding carousel ────────────────────────────
-   Radio inputs live outside .hero so sibling selectors reach
-   the carousel. Controls (arrows + dots) are <label> elements.
-   No JavaScript. Slide transition via transform on .carousel-track.
-───────────────────────────────────────────────────────────── */
+/* ─── sliding carousel ──────────────────────────────────── */
 
-/* hidden radio inputs — must be siblings of .carousel-wrap */
-.carousel-radio {
-  display: none;
-}
-
-/* ── outer wrapper ── */
 .carousel-wrap {
   display: flex;
   flex-direction: column;
@@ -18,29 +8,28 @@
   position: relative;
 }
 
-/* ── viewport: clips the track, round frame ── */
 .carousel-viewport {
-  width: min(320px, 72vw);
-  height: min(320px, 72vw);
-  border-radius: 50%;
+  width: clamp(300px, 72vw, 680px);
+  height: clamp(225px, 54vw, 510px);
+  border-radius: 1rem;
   overflow: hidden;
   border: 2px solid rgba(196, 168, 130, 0.3);
   box-shadow:
     0 0 0 6px rgba(139, 111, 71, 0.08),
-    0 20px 60px rgba(0, 0, 0, 0.55);
+    0 24px 64px rgba(0, 0, 0, 0.6);
   position: relative;
 }
 
-/* ── slide track — 5 slides side by side ── */
 .carousel-track {
   display: flex;
-  width: 500%;
   height: 100%;
   transition: transform 0.55s cubic-bezier(0.4, 0, 0.2, 1);
 }
+.carousel-track.no-transition {
+  transition: none;
+}
 
 .carousel-slide {
-  width: 20%;
   height: 100%;
   flex-shrink: 0;
 }
@@ -52,23 +41,6 @@
   filter: brightness(0.9) saturate(0.85);
 }
 
-/* ── slide positions via checked state ── */
-#cs1:checked ~ .carousel-wrap .carousel-track {
-  transform: translateX(0%);
-}
-#cs2:checked ~ .carousel-wrap .carousel-track {
-  transform: translateX(-20%);
-}
-#cs3:checked ~ .carousel-wrap .carousel-track {
-  transform: translateX(-40%);
-}
-#cs4:checked ~ .carousel-wrap .carousel-track {
-  transform: translateX(-60%);
-}
-#cs5:checked ~ .carousel-wrap .carousel-track {
-  transform: translateX(-80%);
-}
-
 /* ── arrows ── */
 .carousel-prev-wrap,
 .carousel-next-wrap {
@@ -78,78 +50,42 @@
   z-index: 2;
 }
 .carousel-prev-wrap {
-  left: -3.2rem;
+  left: -3.4rem;
 }
 .carousel-next-wrap {
-  right: -3.2rem;
+  right: -3.4rem;
 }
 
-.carousel-prev-wrap label,
-.carousel-next-wrap label {
-  display: none;
-  width: 2.4rem;
-  height: 2.4rem;
+.carousel-btn {
+  display: flex;
+  width: 2.6rem;
+  height: 2.6rem;
   border-radius: 50%;
-  background: rgba(26, 23, 20, 0.7);
+  background: rgba(26, 23, 20, 0.72);
   backdrop-filter: blur(6px);
   border: 1px solid rgba(196, 168, 130, 0.25);
   align-items: center;
   justify-content: center;
-  font-size: 0.75rem;
-  color: rgba(255, 255, 255, 0.75);
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.8);
   cursor: pointer;
   transition:
     background 0.2s,
     color 0.2s;
   user-select: none;
 }
-.carousel-prev-wrap label:hover,
-.carousel-next-wrap label:hover {
-  background: rgba(139, 111, 71, 0.8);
+.carousel-btn:hover {
+  background: rgba(139, 111, 71, 0.85);
   color: #fff;
-}
-
-/* show only the label matching the active slide — prev side */
-#cs1:checked ~ .carousel-wrap .carousel-prev-wrap label[for='cs5'] {
-  display: flex;
-}
-#cs2:checked ~ .carousel-wrap .carousel-prev-wrap label[for='cs1'] {
-  display: flex;
-}
-#cs3:checked ~ .carousel-wrap .carousel-prev-wrap label[for='cs2'] {
-  display: flex;
-}
-#cs4:checked ~ .carousel-wrap .carousel-prev-wrap label[for='cs3'] {
-  display: flex;
-}
-#cs5:checked ~ .carousel-wrap .carousel-prev-wrap label[for='cs4'] {
-  display: flex;
-}
-
-/* next side */
-#cs1:checked ~ .carousel-wrap .carousel-next-wrap label[for='cs2'] {
-  display: flex;
-}
-#cs2:checked ~ .carousel-wrap .carousel-next-wrap label[for='cs3'] {
-  display: flex;
-}
-#cs3:checked ~ .carousel-wrap .carousel-next-wrap label[for='cs4'] {
-  display: flex;
-}
-#cs4:checked ~ .carousel-wrap .carousel-next-wrap label[for='cs5'] {
-  display: flex;
-}
-#cs5:checked ~ .carousel-wrap .carousel-next-wrap label[for='cs1'] {
-  display: flex;
 }
 
 /* ── dots ── */
 .carousel-dots {
   display: flex;
-  gap: 6px;
+  gap: 7px;
   align-items: center;
 }
-.carousel-dots label {
+.carousel-dots span {
   width: 5px;
   height: 5px;
   border-radius: 50%;
@@ -160,15 +96,10 @@
     transform 0.2s;
   display: block;
 }
-.carousel-dots label:hover {
+.carousel-dots span:hover {
   background: rgba(196, 168, 130, 0.5);
 }
-
-#cs1:checked ~ .carousel-wrap .carousel-dots label[for='cs1'],
-#cs2:checked ~ .carousel-wrap .carousel-dots label[for='cs2'],
-#cs3:checked ~ .carousel-wrap .carousel-dots label[for='cs3'],
-#cs4:checked ~ .carousel-wrap .carousel-dots label[for='cs4'],
-#cs5:checked ~ .carousel-wrap .carousel-dots label[for='cs5'] {
+.carousel-dots span.active {
   background: var(--gold-light);
   transform: scale(1.5);
 }
