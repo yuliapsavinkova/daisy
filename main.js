@@ -14,30 +14,45 @@ if (planSelect) {
   planSelect.addEventListener('change', () => planSelect.classList.add('has-value'));
 }
 
-// ── infinite carousel ─────────────────────────────────────
+// ── carousel — photos auto-loaded from src/photos/ ────────
 (function () {
   const track = document.getElementById('carousel-track');
   const dotsEl = document.getElementById('carousel-dots');
   if (!track) return;
 
+  // Glob all images from src/photos/ — any filename, any order
+  const modules = import.meta.glob('./photos/*.{jpg,jpeg,png,webp,JPG,JPEG,PNG}', { eager: true });
+  const urls = Object.values(modules).map((m) => m.default);
+
+  if (urls.length === 0) {
+    track.closest('.carousel-wrap').style.display = 'none';
+    return;
+  }
+
+  // Build slides
+  urls.forEach((url) => {
+    const slide = document.createElement('div');
+    slide.className = 'carousel-slide';
+    slide.innerHTML = `<img src="${url}" alt="" />`;
+    track.appendChild(slide);
+  });
+
   const realSlides = Array.from(track.querySelectorAll('.carousel-slide'));
   const N = realSlides.length;
   if (N < 2) return;
 
-  // Clone first and last slide for seamless wrap
+  // Clone first and last for seamless wrap
   const cloneFirst = realSlides[0].cloneNode(true);
   const cloneLast = realSlides[N - 1].cloneNode(true);
-  track.appendChild(cloneFirst); // position N+1 → wraps to 1
-  track.prepend(cloneLast); // position 0  → wraps to N
+  track.appendChild(cloneFirst);
+  track.prepend(cloneLast);
 
-  // Total slides = N + 2, each takes 1/(N+2) of track width
   const total = N + 2;
   track.style.width = `${total * 100}%`;
   track.querySelectorAll('.carousel-slide').forEach((s) => {
     s.style.width = `${100 / total}%`;
   });
 
-  // Start at position 1 (first real slide, index 0 is the clone-last)
   let pos = 1;
   let transitioning = false;
 
@@ -57,10 +72,9 @@ if (planSelect) {
     transitioning = true;
     pos = newPos;
     setPos(pos, true);
-    updateDots((pos - 1 + N) % N);
+    updateDots((((pos - 1) % N) + N) % N);
   }
 
-  // After transition ends, silently jump if on a clone
   track.addEventListener('transitionend', () => {
     transitioning = false;
     if (pos === 0) {
@@ -80,7 +94,6 @@ if (planSelect) {
     dotsEl.appendChild(dot);
   });
 
-  // Buttons
   document.getElementById('carousel-prev').addEventListener('click', () => {
     clearInterval(timer);
     goTo(pos - 1);
@@ -90,9 +103,7 @@ if (planSelect) {
     goTo(pos + 1);
   });
 
-  // Auto-advance every 3 seconds, pause on manual interaction
   const timer = setInterval(() => goTo(pos + 1), 3000);
 
-  // Start position
   setPos(pos, false);
 })();
