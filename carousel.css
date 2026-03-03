@@ -59,6 +59,7 @@
 @media (max-width: 540px) {
   .carousel-viewport {
     width: 98vw;
+    height: 65vw;
   }
 
   .carousel-prev-wrap {
