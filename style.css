@@ -222,6 +222,7 @@ section:nth-child(even) {
 /* ─── how it works ──────────────────────────────────────── */
 .how-it-works {
   background: var(--ink) !important;
+  padding: 4rem 0;
 }
 
 .how-it-works .label {
