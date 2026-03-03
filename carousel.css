@@ -9,7 +9,7 @@
 }
 
 .carousel-viewport {
-  width: clamp(300px, 72vw, 680px);
+  width: clamp(300px, 80vw, 680px);
   height: clamp(200px, 48vw, 453px);
   border-radius: 1rem;
   overflow: hidden;
@@ -57,6 +57,10 @@
 }
 
 @media (max-width: 540px) {
+  .carousel-viewport {
+    width: 98vw;
+  }
+
   .carousel-prev-wrap {
     left: 0.5rem;
   }
