@@ -555,6 +555,15 @@ section:nth-child(even) {
   margin-left: 0;
 }
 
+.faq-item dd a {
+  color: var(--gold);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+.faq-item dd a:hover {
+  color: var(--ink);
+}
+
 /* ─── contact ───────────────────────────────────────────── */
 .contact h2 {
   font-family: var(--f-serif);
