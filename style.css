@@ -189,7 +189,7 @@ section:nth-child(even) {
 
 .hero-body h1 {
   font-family: var(--f-serif);
-  font-size: clamp(3.5rem, 8vw, 7rem);
+  font-size: clamp(3.5rem, 5vw, 7rem);
   font-weight: 300;
   font-style: italic;
   color: #fff;
