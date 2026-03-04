@@ -709,3 +709,39 @@ footer span:last-child {
     justify-content: center;
   }
 }
+
+/* ─── about ─────────────────────────────────────────────── */
+.about-heading {
+  font-family: var(--f-serif);
+  font-size: clamp(1.8rem, 4vw, 3rem);
+  font-weight: 300;
+  font-style: italic;
+  color: var(--ink);
+  line-height: 1.2;
+  margin-bottom: 1.25rem;
+}
+.about-body {
+  font-size: var(--text-body);
+  color: var(--ink-soft);
+  line-height: 1.85;
+  margin-bottom: 2rem;
+  max-width: 38rem;
+  margin-inline: auto;
+  margin-bottom: 2rem;
+}
+.about-pills {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.5rem;
+}
+.about-pills span {
+  font-size: var(--text-small);
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--gold);
+  border: 1px solid var(--rule);
+  padding: 0.35rem 0.85rem;
+  background: var(--paper);
+}
