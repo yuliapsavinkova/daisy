@@ -75,14 +75,27 @@ if (planSelect) {
     updateDots((((pos - 1) % N) + N) % N);
   }
 
+  // Double rAF ensures Safari completes the paint before repositioning,
+  // preventing the flicker and disappearing images on iOS.
   track.addEventListener('transitionend', () => {
-    transitioning = false;
     if (pos === 0) {
       pos = N;
-      setPos(pos, false);
+      requestAnimationFrame(() =>
+        requestAnimationFrame(() => {
+          setPos(pos, false);
+          transitioning = false;
+        }),
+      );
     } else if (pos === N + 1) {
       pos = 1;
-      setPos(pos, false);
+      requestAnimationFrame(() =>
+        requestAnimationFrame(() => {
+          setPos(pos, false);
+          transitioning = false;
+        }),
+      );
+    } else {
+      transitioning = false;
     }
   });
 
