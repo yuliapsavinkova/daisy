@@ -752,6 +752,14 @@ footer span:last-child {
     grid-template-columns: 1fr;
     gap: 2rem;
   }
+  .about-pills {
+    gap: 0.35rem;
+  }
+  .about-pills span {
+    font-size: 0.7rem;
+    padding: 0.25rem 0.65rem;
+    letter-spacing: 0.08em;
+  }
   footer {
     flex-direction: column;
     gap: 0.75rem;
