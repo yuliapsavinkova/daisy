@@ -126,11 +126,9 @@ section:nth-child(even) {
 /* ─── hero ──────────────────────────────────────────────── */
 .hero {
   background: #1e1812;
-  padding: 2rem var(--pad);
-  padding-top: max(2rem, calc(1rem + env(safe-area-inset-top)));
+  padding: max(3.5rem, calc(2rem + env(safe-area-inset-top))) var(--pad) 2rem;
   text-align: center;
 }
-
 .hero-body {
   display: flex;
   flex-direction: column;
@@ -159,17 +157,58 @@ section:nth-child(even) {
     box-shadow: 0 0 6px 2px rgba(196, 168, 130, 0.45);
   }
 }
-
+@keyframes glow-green {
+  0%,
+  100% {
+    opacity: 0.5;
+    box-shadow: none;
+  }
+  50% {
+    opacity: 1;
+    box-shadow: 0 0 6px 2px rgba(76, 175, 125, 0.5);
+  }
+}
+.hero-text {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+.hero-body h1 {
+  font-family: var(--f-serif);
+  font-size: clamp(3.5rem, 5vw, 7rem);
+  font-weight: 300;
+  font-style: italic;
+  color: #fff;
+  line-height: 0.95;
+  margin-bottom: 0;
+}
+.hero-headline {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.35rem;
+}
+.hero-headline-main {
+  font-family: var(--f-serif);
+  font-size: clamp(1.2rem, 3vw, 2rem);
+  font-weight: 300;
+  font-style: italic;
+  color: rgba(255, 255, 255, 0.82);
+  line-height: 1.2;
+}
 .hero-location {
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-wrap: wrap;
   gap: 0.45rem;
   font-size: var(--text-small);
   font-weight: 300;
   letter-spacing: 0.14em;
   text-transform: uppercase;
   color: rgba(255, 255, 255, 0.45);
+  margin-top: 0.25rem;
 }
 .hero-location-dot {
   width: 5px;
@@ -197,55 +236,12 @@ section:nth-child(even) {
   flex-shrink: 0;
   animation: glow-green 2.5s ease-in-out infinite;
 }
-@keyframes glow-green {
-  0%,
-  100% {
-    opacity: 0.5;
-    box-shadow: none;
-  }
-  50% {
-    opacity: 1;
-    box-shadow: 0 0 6px 2px rgba(76, 175, 125, 0.5);
-  }
-}
-
-.hero-text {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.5rem;
-}
-
-.hero-body h1 {
-  font-family: var(--f-serif);
-  font-size: clamp(3.5rem, 5vw, 7rem);
-  font-weight: 300;
-  font-style: italic;
-  color: #fff;
-  line-height: 0.95;
-  margin-bottom: 0;
-}
-.hero-headline {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.35rem;
-}
-.hero-headline-main {
-  font-family: var(--f-serif);
-  font-size: clamp(1.2rem, 3vw, 2rem);
-  font-weight: 300;
-  font-style: italic;
-  color: rgba(255, 255, 255, 0.82);
-  line-height: 1.2;
-}
 
 /* ─── how it works ──────────────────────────────────────── */
 .how-it-works {
   background: var(--ink) !important;
   padding: 4rem 0;
 }
-
 .how-it-works .label {
   color: var(--gold-light);
 }
@@ -253,7 +249,6 @@ section:nth-child(even) {
 .how-it-works .label::after {
   background: rgba(196, 168, 130, 0.2);
 }
-
 .steps-grid {
   display: inline-grid;
   grid-template-columns: 1fr 1fr;
@@ -261,7 +256,6 @@ section:nth-child(even) {
   border: 1px solid rgba(196, 168, 130, 0.1);
   text-align: left;
 }
-
 .step {
   padding: 1.75rem 2rem;
   border-right: 1px solid rgba(196, 168, 130, 0.1);
@@ -284,7 +278,6 @@ section:nth-child(even) {
   border-right: none !important;
   border-top: 1px solid rgba(196, 168, 130, 0.1);
 }
-
 .step-n {
   font-family: var(--f-serif);
   font-size: 0.7rem;
@@ -589,7 +582,6 @@ section:nth-child(even) {
   line-height: 1.75;
   margin-left: 0;
 }
-
 .faq-item dd a {
   color: var(--gold);
   text-decoration: underline;
@@ -783,6 +775,11 @@ footer span:last-child {
   .step p {
     font-size: var(--text-body);
     line-height: 1.5;
+  }
+  .hero-available {
+    padding-left: 0;
+    border-left: none;
+    margin-left: 0;
   }
 }
 @media (max-width: 40rem) {
