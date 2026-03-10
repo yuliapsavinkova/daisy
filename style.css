@@ -126,7 +126,7 @@ section:nth-child(even) {
 /* ─── hero ──────────────────────────────────────────────── */
 .hero {
   background: #1e1812;
-  padding: 1rem var(--pad) 0;
+  padding: 2rem var(--pad);
   text-align: center;
 }
 
@@ -398,6 +398,10 @@ section:nth-child(even) {
   color: var(--ink-soft);
   padding-top: 1rem;
   border-top: 1px solid var(--rule);
+
+  a {
+    text-decoration: underline;
+  }
 }
 .plan ul {
   flex: 1;
