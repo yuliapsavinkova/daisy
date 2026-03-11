@@ -758,6 +758,9 @@ footer span:last-child {
   }
 }
 @media (max-width: 520px) {
+  .how-it-works {
+    padding: 2rem 0;
+  }
   .steps-grid {
     grid-template-columns: 1fr;
     width: 100%;
