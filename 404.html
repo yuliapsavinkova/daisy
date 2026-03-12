@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Page Not Found | Yulia Sitter</title>
+    <link rel="stylesheet" href="./style.css" />
+    <style>
+      .error-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        min-height: 80vh;
+        text-align: center;
+        padding: var(--pad);
+      }
+      .error-code {
+        font-family: var(--f-serif);
+        font-size: 8rem;
+        color: var(--gold-light);
+        line-height: 1;
+        margin-bottom: 1rem;
+      }
+      .error-message {
+        font-family: var(--f-serif);
+        font-size: var(--text-display);
+        margin-bottom: 2rem;
+      }
+      .btn-back {
+        display: inline-block;
+        padding: 0.8rem 2rem;
+        border: 1px solid var(--gold);
+        color: var(--gold);
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        font-size: var(--text-small);
+        transition: all 0.3s ease;
+      }
+      .btn-back:hover {
+        background: var(--gold);
+        color: var(--paper);
+      }
+    </style>
+  </head>
+  <body style="background-color: var(--paper)">
+    <div class="error-container">
+      <div class="error-code">404</div>
+      <h1 class="error-message">Oops! This page has wandered off.</h1>
+      <p style="margin-bottom: 2rem; color: var(--ink-soft)">
+        Just like a curious pup, this link went somewhere it shouldn't have.
+      </p>
+      <a href="/" class="btn-back">Back to Home</a>
+    </div>
+  </body>
+</html>

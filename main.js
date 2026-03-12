@@ -33,7 +33,8 @@ if (planSelect) {
   urls.forEach((url) => {
     const slide = document.createElement('div');
     slide.className = 'carousel-slide';
-    slide.innerHTML = `<img src="${url}" alt="" />`;
+    // Accessibility SEO fix: Provide meaningful alt text (New)
+    slide.innerHTML = `<img src="${url}" alt="Pet being cared for by Yulia" />`;
     track.appendChild(slide);
   });
 
