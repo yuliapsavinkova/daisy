@@ -3,9 +3,8 @@
 
     <g transform="translate(50, 52)">
 
-        <text x="-12" y="8" dominant-baseline="middle" text-anchor="middle"
-            style="font-family: serif; font-size: 72px; fill: #c4a882; font-weight: 900; transform: scaleY(1.1);">
-            Y</text>
+        <path d="M-36 -24 L-22 -24 L-12 2 L2 -24 L16 -24 L-6 16 L-6 36 L-18 36 L-18 16 Z"
+            fill="#c4a882" transform="translate(0, -4) scale(1.05, 1.15)" />
 
         <g fill="#ffffff" transform="translate(15, -6)">
             <path d="M-14 10c-3 0-5-4-5-7 0-4 2-8 5-8s5 4 5 8c0 3-2 7-5 7z"
