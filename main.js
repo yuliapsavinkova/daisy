@@ -20,51 +20,33 @@ if (planSelect) {
   const dotsEl = document.getElementById('carousel-dots');
   if (!track) return;
 
-  // Two globs:
-  //   srcsetModules → "url 400w, url 800w" string per image (vite-imagetools)
-  //   srcModules    → single 800w URL as <img src> fallback
-  const srcsetModules = import.meta.glob('./photos/*.{jpg,jpeg,png,webp,JPG,JPEG,PNG}', {
-    eager: true,
-    query: { w: '400;800', format: 'webp', as: 'srcset' },
-  });
-  const srcModules = import.meta.glob('./photos/*.{jpg,jpeg,png,webp,JPG,JPEG,PNG}', {
-    eager: true,
-    query: { w: '800', format: 'webp' },
-  });
+  // Single glob — guarantees all images are emitted into the production build
+  const modules = import.meta.glob('./photos/*.{jpg,jpeg,png,webp,JPG,JPEG,PNG}', { eager: true });
+  const urls = Object.values(modules).map((m) => m.default);
 
-  const keys = Object.keys(srcsetModules);
-
-  if (keys.length === 0) {
+  if (urls.length === 0) {
     track.closest('.carousel-wrap').style.display = 'none';
     return;
   }
 
-  // carousel viewport is clamp(300px, 90vw, 900px); on mobile 98vw
-  const SIZES = '(max-width: 540px) 98vw, clamp(300px, 90vw, 900px)';
-
   // Build slides
-  keys.forEach((key, i) => {
-    const srcset = srcsetModules[key].default;
-    const src = srcModules[key].default;
-
+  urls.forEach((url, i) => {
     const slide = document.createElement('div');
     slide.className = 'carousel-slide';
 
     const img = document.createElement('img');
+    img.src = url;
     img.alt = 'Pet being cared for by Yulia';
-    img.src = src;
-    img.srcset = srcset;
-    img.sizes = SIZES;
-    img.width = 900; // intrinsic width — prevents CLS
-    img.height = 595; // intrinsic height — prevents CLS
+    img.width = 900; // prevents CLS while image loads
+    img.height = 595;
 
     if (i === 0) {
-      // First slide is the LCP candidate — load immediately, high priority
+      // First slide is the LCP candidate — fetch immediately at high priority
       img.loading = 'eager';
       img.fetchPriority = 'high';
       img.decoding = 'sync';
     } else {
-      // Off-screen slides — defer until the browser has spare bandwidth
+      // Off-screen slides — defer until browser has spare bandwidth
       img.loading = 'lazy';
       img.decoding = 'async';
     }
@@ -80,7 +62,7 @@ if (planSelect) {
   // Clone first and last for seamless wrap
   const cloneFirst = realSlides[0].cloneNode(true);
   const cloneLast = realSlides[N - 1].cloneNode(true);
-  // Clones are always off-screen at mount — ensure lazy
+  // Clones are always off-screen at mount
   cloneFirst.querySelector('img').loading = 'lazy';
   cloneLast.querySelector('img').loading = 'lazy';
   track.appendChild(cloneFirst);

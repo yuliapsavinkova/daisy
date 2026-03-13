@@ -1,16 +1,14 @@
 import { defineConfig } from 'vite';
 import { VitePWA } from 'vite-plugin-pwa';
 import viteImagemin from 'vite-plugin-imagemin';
-import { imagetools } from 'vite-imagetools'; // generates 400w/800w variants via ?w= glob queries
 
 export default defineConfig({
   root: './',
   assetsInclude: ['**/*.jpg', '**/*.jpeg', '**/*.png', '**/*.webp'],
   plugins: [
-    imagetools(), // must come before imagemin so it can resize before compression
     VitePWA({
       registerType: 'autoUpdate',
-      injectRegister: 'script-defer', // prevents registerSW.js blocking render
+      injectRegister: 'script-defer',
       includeAssets: ['favicon.svg', 'sitemap.xml'],
       manifest: {
         name: 'Yulia Sitter',
