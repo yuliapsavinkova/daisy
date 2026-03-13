@@ -23,9 +23,9 @@ a {
   --ink-soft: #5a534c;
   --paper: #f7f3ee;
   --paper-alt: #faf8f5;
-  --gold: #8b6f47;
+  --gold: #7a5f3d; /* darkened from #8b6f47: 4.26:1 → 5.38:1 on --paper */
   --gold-light: #c4a882;
-  --rule: rgba(139, 111, 71, 0.18);
+  --rule: rgba(122, 95, 61, 0.18);
 
   --site-width: 60rem;
   --pad: 1.5rem;
@@ -207,7 +207,7 @@ section:nth-child(even) {
   font-weight: 300;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.7); /* was 0.45 → 4.48:1; now 9.05:1 ✓ */
+  color: rgba(255, 255, 255, 0.7); /* was 0.45 → 4.48:1; now 9.05:1 */
   margin-top: 0.25rem;
 }
 .hero-location-dot {
@@ -394,7 +394,7 @@ section:nth-child(even) {
 }
 .plan:hover {
   border-color: var(--gold-light);
-  box-shadow: 0 4px 24px rgba(139, 111, 71, 0.1);
+  box-shadow: 0 4px 24px rgba(122, 95, 61, 0.1);
 }
 .plan-featured {
   background: var(--paper-alt);
@@ -738,7 +738,7 @@ footer span:last-child {
 .footer-links a {
   font-size: var(--text-small);
   letter-spacing: 0.08em;
-  color: rgba(255, 255, 255, 0.6); /* was 0.35 → 3.23:1; now 7.02:1 ✓ */
+  color: rgba(255, 255, 255, 0.6); /* was 0.35 → 3.23:1; now 7.02:1 */
   text-transform: uppercase;
   transition: color 0.2s;
 }
