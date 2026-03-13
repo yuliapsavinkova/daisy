@@ -8,6 +8,7 @@ export default defineConfig({
   plugins: [
     VitePWA({
       registerType: 'autoUpdate',
+      injectRegister: 'script-defer', // <-- prevents registerSW.js blocking render
       includeAssets: ['favicon.svg', 'sitemap.xml'],
       manifest: {
         name: 'Yulia Sitter',
