@@ -27,13 +27,6 @@ if (planSelect) {
     eager: true,
   });
 
-  // ── DEBUG — remove after confirming small images work ──
-  console.group('[carousel] glob results');
-  console.log('full keys:', Object.keys(fullModules));
-  console.log('small keys:', Object.keys(smallModules));
-  console.groupEnd();
-  // ──────────────────────────────────────────────────────
-
   if (Object.keys(fullModules).length === 0) {
     track.closest('.carousel-wrap').style.display = 'none';
     return;
@@ -41,20 +34,14 @@ if (planSelect) {
 
   const smallByFile = {};
   for (const [key, mod] of Object.entries(smallModules)) {
-    const filename = key.split('/').pop();
-    smallByFile[filename] = mod.default;
+    smallByFile[key.split('/').pop()] = mod.default;
   }
 
   const SIZES = '(max-width: 540px) 98vw, clamp(300px, 90vw, 900px)';
 
   Object.entries(fullModules).forEach(([key, mod], i) => {
     const fullUrl = mod.default;
-    const filename = key.split('/').pop();
-    const smallUrl = smallByFile[filename];
-
-    // ── DEBUG ──
-    console.log(`[carousel] slide ${i}: ${filename} → smallUrl=${smallUrl ?? 'NOT FOUND'}`);
-    // ──────────
+    const smallUrl = smallByFile[key.split('/').pop()];
 
     const slide = document.createElement('div');
     slide.className = 'carousel-slide';
