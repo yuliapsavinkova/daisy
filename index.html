@@ -28,31 +28,26 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <!-- Async font load: doesn't block initial render -->
     <link
-      rel="preload"
-      as="style"
       href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap"
-      onload="
-        this.onload = null;
-        this.rel = 'stylesheet';
-      "
+      rel="stylesheet"
     />
-    <noscript>
-      <link
-        rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap"
-      />
-    </noscript>
 
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-CF1R3S1YY9"></script>
+    <!-- Google Analytics deferred until browser idle — prevents forced-reflow during LCP -->
     <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag() {
-        dataLayer.push(arguments);
-      }
-      gtag('js', new Date());
-      gtag('config', 'G-CF1R3S1YY9');
+      (window.requestIdleCallback || ((cb) => setTimeout(cb, 1)))(() => {
+        const s = document.createElement('script');
+        s.src = 'https://www.googletagmanager.com/gtag/js?id=G-CF1R3S1YY9';
+        s.async = true;
+        document.head.appendChild(s);
+        window.dataLayer = window.dataLayer || [];
+        function gtag() {
+          dataLayer.push(arguments);
+        }
+        window.gtag = gtag;
+        gtag('js', new Date());
+        gtag('config', 'G-CF1R3S1YY9');
+      });
     </script>
 
     <script type="application/ld+json">
@@ -70,142 +65,8 @@
       }
     </script>
 
-    <!-- Critical above-fold CSS inlined to eliminate render-blocking requests -->
-    <style>
-      html {
-        font-size: clamp(15px, 1.1vw, 17px);
-        scroll-behavior: smooth;
-        box-sizing: border-box;
-      }
-      *,
-      *::before,
-      *::after {
-        box-sizing: inherit;
-        margin: 0;
-        padding: 0;
-      }
-      a {
-        color: inherit;
-        text-decoration: none;
-      }
-      :root {
-        --ink: #1a1714;
-        --ink-soft: #5a534c;
-        --paper: #f7f3ee;
-        --paper-alt: #faf8f5;
-        --gold: #8b6f47;
-        --gold-light: #c4a882;
-        --rule: rgba(139, 111, 71, 0.18);
-        --site-width: 60rem;
-        --pad: 1.5rem;
-        --section-y: 6rem;
-        --f-serif: 'Cormorant Garamond', Georgia, serif;
-        --f-sans: 'DM Sans', system-ui, sans-serif;
-        --text-small: 0.78rem;
-        --text-body: 0.9rem;
-        --text-display: 1.8rem;
-      }
-      body {
-        font-family: var(--f-sans);
-        font-size: var(--text-body);
-        font-weight: 300;
-        line-height: 1.65;
-        background: var(--paper);
-        color: var(--ink);
-        -webkit-font-smoothing: antialiased;
-      }
-      .hero {
-        background: #1e1812;
-        padding: max(3.5rem, calc(2rem + env(safe-area-inset-top))) var(--pad) 2rem;
-        text-align: center;
-      }
-      .hero-body {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 1.25rem;
-        animation: rise 1.3s cubic-bezier(0.22, 1, 0.36, 1) both;
-      }
-      @keyframes rise {
-        from {
-          opacity: 0;
-          transform: translateY(1.5rem);
-        }
-        to {
-          opacity: 1;
-          transform: none;
-        }
-      }
-      .hero-body h1 {
-        font-family: var(--f-serif);
-        font-size: clamp(3.5rem, 5vw, 7rem);
-        font-weight: 300;
-        font-style: italic;
-        color: #fff;
-        line-height: 0.95;
-      }
-      .hero-headline-main {
-        font-family: var(--f-serif);
-        font-size: clamp(1.2rem, 3vw, 2rem);
-        font-weight: 300;
-        font-style: italic;
-        color: rgba(255, 255, 255, 0.82);
-        line-height: 1.2;
-      }
-      .hero-location {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        flex-wrap: wrap;
-        gap: 0.45rem;
-        font-size: var(--text-small);
-        font-weight: 300;
-        letter-spacing: 0.14em;
-        text-transform: uppercase;
-        color: rgba(255, 255, 255, 0.7);
-        margin-top: 0.25rem;
-      }
-      .carousel-viewport {
-        width: clamp(300px, 90vw, 900px);
-        height: clamp(200px, 60vw, 600px);
-        border-radius: 1rem;
-        overflow: hidden;
-        border: 2px solid rgba(196, 168, 130, 0.3);
-        box-shadow:
-          0 0 0 6px rgba(139, 111, 71, 0.08),
-          0 24px 64px rgba(0, 0, 0, 0.6);
-      }
-      .logo-top {
-        display: block;
-        width: 3.5rem;
-        height: 3.5rem;
-        opacity: 0.7;
-        margin: 0 auto 0.5rem;
-      }
-    </style>
-    <!-- Full stylesheet loaded async — won't block initial paint -->
-    <link
-      rel="preload"
-      href="./style.css"
-      as="style"
-      onload="
-        this.onload = null;
-        this.rel = 'stylesheet';
-      "
-    />
-    <link
-      rel="preload"
-      href="./carousel.css"
-      as="style"
-      onload="
-        this.onload = null;
-        this.rel = 'stylesheet';
-      "
-    />
-    <noscript>
-      <link rel="stylesheet" href="./style.css" />
-      <link rel="stylesheet" href="./carousel.css" />
-    </noscript>
+    <link rel="stylesheet" href="./style.css" />
+    <link rel="stylesheet" href="./carousel.css" />
 
     <style>
       /* Success Message Styles */
