@@ -11,7 +11,7 @@
 .carousel-viewport {
   width: clamp(300px, 90vw, 900px);
   height: clamp(200px, 60vw, 600px);
-  border-radius: 1rem;
+  /* border-radius: 1rem; */
   overflow: hidden;
   border: 2px solid rgba(196, 168, 130, 0.3);
   box-shadow:
