@@ -14,14 +14,12 @@ if (planSelect) {
   planSelect.addEventListener('change', () => planSelect.classList.add('has-value'));
 }
 
-// ── carousel — photos auto-loaded from photos/ ────────────
+// ── carousel ──────────────────────────────────────────────
 (function () {
   const track = document.getElementById('carousel-track');
   const dotsEl = document.getElementById('carousel-dots');
   if (!track) return;
 
-  // Glob keys are original file paths (e.g. "./photos/01-Felix_3-2.webp")
-  // — stable at build time, not affected by Vite's content hashing.
   const fullModules = import.meta.glob('./photos/*.{jpg,jpeg,png,webp,JPG,JPEG,PNG}', {
     eager: true,
   });
@@ -29,26 +27,34 @@ if (planSelect) {
     eager: true,
   });
 
+  // ── DEBUG — remove after confirming small images work ──
+  console.group('[carousel] glob results');
+  console.log('full keys:', Object.keys(fullModules));
+  console.log('small keys:', Object.keys(smallModules));
+  console.groupEnd();
+  // ──────────────────────────────────────────────────────
+
   if (Object.keys(fullModules).length === 0) {
     track.closest('.carousel-wrap').style.display = 'none';
     return;
   }
 
-  // Build lookup: bare filename → small hashed URL
-  // e.g. "01-Felix_3-2.webp" → "/assets/01-Felix_3-2-XxXxXxXx.webp"
   const smallByFile = {};
   for (const [key, mod] of Object.entries(smallModules)) {
-    const filename = key.split('/').pop(); // "01-Felix_3-2.webp"
+    const filename = key.split('/').pop();
     smallByFile[filename] = mod.default;
   }
 
-  // carousel viewport: clamp(300px, 90vw, 900px); mobile: 98vw
   const SIZES = '(max-width: 540px) 98vw, clamp(300px, 90vw, 900px)';
 
   Object.entries(fullModules).forEach(([key, mod], i) => {
     const fullUrl = mod.default;
-    const filename = key.split('/').pop(); // "01-Felix_3-2.webp"
-    const smallUrl = smallByFile[filename]; // undefined if small/ not generated yet
+    const filename = key.split('/').pop();
+    const smallUrl = smallByFile[filename];
+
+    // ── DEBUG ──
+    console.log(`[carousel] slide ${i}: ${filename} → smallUrl=${smallUrl ?? 'NOT FOUND'}`);
+    // ──────────
 
     const slide = document.createElement('div');
     slide.className = 'carousel-slide';
@@ -101,13 +107,11 @@ if (planSelect) {
     track.style.transition = animate ? 'transform 0.55s cubic-bezier(0.4, 0, 0.2, 1)' : 'none';
     track.style.transform = `translateX(-${(n / total) * 100}%)`;
   }
-
   function updateDots(realIndex) {
-    dotsEl.querySelectorAll('span').forEach((d, i) => {
-      d.classList.toggle('active', i === realIndex);
-    });
+    dotsEl
+      .querySelectorAll('span')
+      .forEach((d, i) => d.classList.toggle('active', i === realIndex));
   }
-
   function goTo(newPos) {
     if (transitioning) return;
     transitioning = true;
@@ -155,6 +159,5 @@ if (planSelect) {
   });
 
   const timer = setInterval(() => goTo(pos + 1), 3000);
-
   setPos(pos, false);
 })();
