@@ -48,7 +48,7 @@ if (planSelect) {
 
     const img = document.createElement('img');
     img.src = fullUrl;
-    img.alt = 'Pet being cared for by Yulia';
+    img.alt = 'Pet being cared for by Yulia in California';
     img.width = 900;
     img.height = 600;
 
