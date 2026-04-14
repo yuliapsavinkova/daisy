@@ -37,6 +37,8 @@ a {
   --text-small: 0.78rem;
   --text-body: 0.9rem;
   --text-display: 1.8rem;
+
+  background-color: var(--ink);
 }
 
 body {
