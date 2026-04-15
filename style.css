@@ -339,6 +339,7 @@ section:nth-child(even) {
   text-transform: uppercase;
   color: var(--gold);
   border: 1px solid var(--rule);
+  border-radius: 1rem;
   padding: 0.35rem 0.85rem;
   background: var(--paper);
 }
@@ -388,6 +389,7 @@ section:nth-child(even) {
   flex-direction: column;
   gap: 1rem;
   border: 1px solid var(--rule);
+  border-radius: 1rem;
   background: var(--paper);
   position: relative;
   transition:
@@ -506,6 +508,7 @@ section:nth-child(even) {
   position: relative;
   padding: 2rem 1.75rem 1.75rem;
   border: 1px solid var(--rule);
+  border-radius: 1rem;
   background: var(--paper);
 }
 .review::before {
