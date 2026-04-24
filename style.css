@@ -216,8 +216,7 @@ section:nth-child(even) {
   width: 5px;
   height: 5px;
   border-radius: 50%;
-  /* background: var(--gold-light); */
-  background: #4caf7d;
+  background: var(--gold-light);
   opacity: 0.7;
   flex-shrink: 0;
   animation: glow 2.5s ease-in-out infinite;
