@@ -9,7 +9,7 @@ export default defineConfig({
     VitePWA({
       registerType: 'autoUpdate',
       injectRegister: 'script-defer',
-      includeAssets: ['favicon.svg', 'sitemap.xml'],
+      includeAssets: ['favicon.svg', 'sitemap.xml', 'robots.txt'],
       manifest: {
         name: 'Yulia Sitter',
         short_name: 'Yulia',
@@ -35,6 +35,7 @@ export default defineConfig({
       input: {
         main: './index.html',
         nested: './404.html',
+        california: './long-term-house-sitter-california/index.html',
       },
     },
   },
