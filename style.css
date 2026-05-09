@@ -1,5 +1,8 @@
 html {
-  font-size: clamp(15px, 1.1vw, 17px);
+  /* FIX: old max was 17px — invisible growth on wide/4K screens.
+     New: scales from 15px → 22px across the viewport range.
+     13" Mac (~1280px): ~16px  |  1440p: ~18px  |  4K: 22px cap. */
+  font-size: clamp(15px, 1.2vw, 22px);
   scroll-behavior: smooth;
   box-sizing: border-box;
 }
@@ -49,6 +52,10 @@ body {
   background: var(--paper);
   color: var(--ink);
   -webkit-font-smoothing: antialiased;
+  /* FIX: grayscale smoothing on macOS makes thin serif/sans fonts sharper at
+     large sizes; optimizeLegibility improves kerning on display headings */
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
 }
 
 .wrap {
