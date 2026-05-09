@@ -30,7 +30,8 @@ a {
   --gold-light: #c4a882;
   --rule: rgba(122, 95, 61, 0.18);
 
-  --site-width: 60rem;
+  --site-width: clamp(520px, 55vw, 900px); /* text/reading */
+  --site-width-wide: clamp(520px, 78vw, 1400px); /* cards/forms  */
   --pad: 1.5rem;
   --section-y: 6rem;
 
@@ -60,6 +61,11 @@ body {
 
 .wrap {
   width: min(var(--site-width), 100% - var(--pad) * 2);
+  margin-inline: auto;
+}
+
+.wrap-wide {
+  width: min(var(--site-width-wide), 100% - var(--pad) * 2);
   margin-inline: auto;
 }
 
