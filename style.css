@@ -176,7 +176,7 @@ section:nth-child(even) {
   align-items: center;
   gap: 0.5rem;
 }
-.hero-body h1 {
+.hero-text .brand {
   font-family: var(--f-serif);
   font-size: clamp(3.5rem, 5vw, 7rem);
   font-weight: 300;
@@ -185,13 +185,7 @@ section:nth-child(even) {
   line-height: 0.95;
   margin-bottom: 0;
 }
-.hero-headline {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.35rem;
-}
-.hero-headline-main {
+.hero-text h1 {
   font-family: var(--f-serif);
   font-size: clamp(1.2rem, 3vw, 2rem);
   font-weight: 300;
@@ -199,6 +193,7 @@ section:nth-child(even) {
   color: rgba(255, 255, 255, 0.82);
   line-height: 1.2;
 }
+
 .hero-location {
   display: flex;
   align-items: center;
@@ -837,4 +832,39 @@ footer span:last-child {
   width: 1.55em;
   height: 1.55em;
   flex-shrink: 0;
+}
+
+/* form messages */
+/* Success Message Styles */
+#form-status {
+  display: none;
+  text-align: center;
+  padding: 4rem 2rem;
+  background: var(--paper-alt);
+  border: 1px solid var(--rule);
+  border-radius: 0.5rem;
+  animation: cardFadeIn 0.6s ease-out;
+}
+
+#form-status h3 {
+  font-family: var(--f-serif);
+  font-size: 2.2rem;
+  color: var(--ink);
+  margin-bottom: 1rem;
+}
+
+#form-status p {
+  color: var(--ink-soft);
+  font-size: var(--text-body);
+}
+
+@keyframes cardFadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
 }

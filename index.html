@@ -2,15 +2,12 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
+    <meta name="robots" content="index, follow" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Yulia — Live-In House & Pet Sitter | Serving all of California</title>
     <meta
       name="description"
       content="Professional live-in house and pet sitter serving all of California. Providing trusted, stress-free care for your home and pets while you travel."
-    />
-    <meta
-      name="keywords"
-      content="pet sitter California, house sitter California, San Diego pet sitting, San Francisco house sitting, Santa Barbara pet care, reliable house sitting"
     />
     <link rel="canonical" href="https://yulia.sitterjourney.com/" />
 
@@ -34,6 +31,16 @@
     <link rel="manifest" href="/site.webmanifest" />
 
     <meta name="theme-color" content="#1a1714" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Yulia — Live-In House & Pet Sitter" />
+    <meta
+      name="twitter:description"
+      content="Trusted live-in care for your home and pets throughout California."
+    />
+    <meta name="twitter:image" content="https://yulia.sitterjourney.com/og-image.jpg" />
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -60,6 +67,15 @@
         "description": "Professional live-in house and pet sitting throughout California. Specialising in long-term and monthly sits of 30 days or more. Trusted, selective, and background-checked.",
         "url": "https://yulia.sitterjourney.com/",
         "image": "https://yulia.sitterjourney.com/og-image.jpg",
+        "founder": {
+          "@type": "Person",
+          "name": "Yulia"
+        },
+        "serviceType": ["House Sitting", "Pet Sitting", "Live-In Pet Care"],
+        "sameAs": [
+          "https://www.trustedhousesitters.com/house-and-pet-sitters/united-states/california/san-francisco/l/6526245/",
+          "https://www.rover.com/sit/yulias92191"
+        ],
         "areaServed": [
           {
             "@type": "City",
@@ -137,51 +153,15 @@
 
     <link rel="stylesheet" href="./style.css" />
     <link rel="stylesheet" href="./carousel.css" />
-
-    <style>
-      /* Success Message Styles */
-      #form-status {
-        display: none;
-        text-align: center;
-        padding: 4rem 2rem;
-        background: var(--paper-alt);
-        border: 1px solid var(--rule);
-        border-radius: 0.5rem;
-        animation: cardFadeIn 0.6s ease-out;
-      }
-
-      #form-status h3 {
-        font-family: var(--f-serif);
-        font-size: 2.2rem;
-        color: var(--ink);
-        margin-bottom: 1rem;
-      }
-
-      #form-status p {
-        color: var(--ink-soft);
-        font-size: var(--text-body);
-      }
-
-      @keyframes cardFadeIn {
-        from {
-          opacity: 0;
-          transform: scale(0.95);
-        }
-        to {
-          opacity: 1;
-          transform: scale(1);
-        }
-      }
-    </style>
   </head>
   <body>
     <div class="hero">
       <div class="hero-body">
         <div class="hero-text">
-          <h1><img src="/favicon.svg" alt="" aria-hidden="true" class="logo-top" />Yulia</h1>
-          <p class="hero-headline">
-            <span class="hero-headline-main">Live-In House &amp; Pet Sitter</span>
-          </p>
+          <div class="brand">
+            <img src="/favicon.svg" alt="" aria-hidden="true" class="logo-top" />Yulia
+          </div>
+          <h1>Live-In House &amp; Pet Sitter</h1>
           <!-- <p class="hero-location">
             <span class="hero-location-dot"> </span>Serving All California Area
             <span class="hero-available"
