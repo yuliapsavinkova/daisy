@@ -23,7 +23,7 @@ a {
   --ink-soft: #5a534c;
   --paper: #f7f3ee;
   --paper-alt: #faf8f5;
-  --gold: #7a5f3d; /* darkened from #8b6f47: 4.26:1 → 5.38:1 on --paper */
+  --gold: #7a5f3d;
   --gold-light: #c4a882;
   --rule: rgba(122, 95, 61, 0.18);
 
@@ -34,8 +34,8 @@ a {
   --f-serif: 'Cormorant Garamond', serif;
   --f-sans: 'DM Sans', sans-serif;
 
-  --text-small: 0.78rem;
-  --text-body: 0.9rem;
+  --text-small: 0.8rem;
+  --text-body: 1rem;
   --text-display: 1.8rem;
 
   background-color: var(--ink);
@@ -54,12 +54,6 @@ body {
 .wrap {
   width: min(var(--site-width), 100% - var(--pad) * 2);
   margin-inline: auto;
-}
-.wrap-narrow {
-  --site-width: 42rem;
-}
-.wrap-mid {
-  --site-width: 50rem;
 }
 
 section {
@@ -178,7 +172,7 @@ section:nth-child(even) {
 }
 .hero-text .brand {
   font-family: var(--f-serif);
-  font-size: clamp(3.5rem, 5vw, 7rem);
+  font-size: clamp(3rem, 5vw, 7rem);
   font-weight: 300;
   font-style: italic;
   color: #fff;
@@ -187,7 +181,7 @@ section:nth-child(even) {
 }
 .hero-text h1 {
   font-family: var(--f-serif);
-  font-size: clamp(1.2rem, 3vw, 2rem);
+  font-size: clamp(2rem, 3vw, 4rem);
   font-weight: 300;
   font-style: italic;
   color: rgba(255, 255, 255, 0.82);
