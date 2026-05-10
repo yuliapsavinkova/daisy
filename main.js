@@ -1,25 +1,14 @@
-// ── plan selector prefill ────────────────────────────────
-document.querySelectorAll('a[data-plan]').forEach((btn) => {
-  btn.addEventListener('click', (e) => {
-    e.preventDefault();
-    document.getElementById('plan').value = btn.dataset.plan;
-    document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });
-    setTimeout(() => document.getElementById('message').focus(), 600);
-  });
-});
+/**
+ * ── clean-code carousel engine ──────────────────────────
+ * Focuses on state management rather than coordinate math.
+ */
 
-// ── select: gold placeholder → ink after selection ────────
-const planSelect = document.getElementById('plan');
-if (planSelect) {
-  planSelect.addEventListener('change', () => planSelect.classList.add('has-value'));
-}
-
-// ── carousel ──────────────────────────────────────────────
 (function () {
   const track = document.getElementById('carousel-track');
   const dotsEl = document.getElementById('carousel-dots');
   if (!track) return;
 
+  // Asset Loading
   const fullModules = import.meta.glob('./photos/*.{jpg,jpeg,png,webp,JPG,JPEG,PNG}', {
     eager: true,
   });
@@ -27,7 +16,8 @@ if (planSelect) {
     eager: true,
   });
 
-  if (Object.keys(fullModules).length === 0) {
+  const sortedKeys = Object.keys(fullModules).sort();
+  if (sortedKeys.length === 0) {
     track.closest('.carousel-wrap').style.display = 'none';
     return;
   }
@@ -38,113 +28,88 @@ if (planSelect) {
   }
 
   const SIZES = '(max-width: 540px) 98vw, clamp(300px, 90vw, 900px)';
+  let currentIndex = 0;
+  const total = sortedKeys.length;
 
-  Object.entries(fullModules).forEach(([key, mod], i) => {
-    const fullUrl = mod.default;
-    const smallUrl = smallByFile[key.split('/').pop()];
+  // 1. DOM Initialization
+  sortedKeys.forEach((path, i) => {
+    const fileName = path.split('/').pop();
 
+    // Slide creation
     const slide = document.createElement('div');
-    slide.className = 'carousel-slide';
+    slide.className = `carousel-slide ${i === 0 ? 'active' : ''}`;
 
     const img = document.createElement('img');
-    img.src = fullUrl;
-    img.alt = 'Pet being cared for by Yulia in California';
-    img.width = 900;
-    img.height = 600;
-
-    if (smallUrl) {
-      img.srcset = `${smallUrl} 450w, ${fullUrl} 900w`;
+    img.src = fullModules[path].default;
+    img.alt = 'Portfolio Highlight';
+    if (smallByFile[fileName]) {
+      img.srcset = `${smallByFile[fileName]} 450w, ${fullModules[path].default} 900w`;
       img.sizes = SIZES;
     }
-
-    if (i === 0) {
-      img.loading = 'eager';
-      img.fetchPriority = 'high';
-      img.decoding = 'sync';
-    } else {
-      img.loading = 'lazy';
-      img.decoding = 'async';
-    }
+    img.loading = i === 0 ? 'eager' : 'lazy'; // Performance optimization
 
     slide.appendChild(img);
     track.appendChild(slide);
-  });
 
-  const realSlides = Array.from(track.querySelectorAll('.carousel-slide'));
-  const N = realSlides.length;
-  if (N < 2) return;
-
-  const cloneFirst = realSlides[0].cloneNode(true);
-  const cloneLast = realSlides[N - 1].cloneNode(true);
-  cloneFirst.querySelector('img').loading = 'lazy';
-  cloneLast.querySelector('img').loading = 'lazy';
-  track.appendChild(cloneFirst);
-  track.prepend(cloneLast);
-
-  const total = N + 2;
-  track.style.width = `${total * 100}%`;
-  track.querySelectorAll('.carousel-slide').forEach((s) => {
-    s.style.width = `${100 / total}%`;
-  });
-
-  let pos = 1;
-  let transitioning = false;
-
-  function setPos(n, animate) {
-    track.style.transition = animate ? 'transform 0.55s cubic-bezier(0.4, 0, 0.2, 1)' : 'none';
-    track.style.transform = `translateX(-${(n / total) * 100}%)`;
-  }
-  function updateDots(realIndex) {
-    dotsEl
-      .querySelectorAll('span')
-      .forEach((d, i) => d.classList.toggle('active', i === realIndex));
-  }
-  function goTo(newPos) {
-    if (transitioning) return;
-    transitioning = true;
-    pos = newPos;
-    setPos(pos, true);
-    updateDots((((pos - 1) % N) + N) % N);
-  }
-
-  track.addEventListener('transitionend', () => {
-    if (pos === 0) {
-      pos = N;
-      requestAnimationFrame(() =>
-        requestAnimationFrame(() => {
-          setPos(pos, false);
-          transitioning = false;
-        }),
-      );
-    } else if (pos === N + 1) {
-      pos = 1;
-      requestAnimationFrame(() =>
-        requestAnimationFrame(() => {
-          setPos(pos, false);
-          transitioning = false;
-        }),
-      );
-    } else {
-      transitioning = false;
-    }
-  });
-
-  realSlides.forEach((_, i) => {
+    // Dot creation
     const dot = document.createElement('span');
     if (i === 0) dot.classList.add('active');
-    dot.addEventListener('click', () => goTo(i + 1));
+    dot.addEventListener('click', () => {
+      resetTimer();
+      updateState(i);
+    });
     dotsEl.appendChild(dot);
   });
 
+  const slides = track.querySelectorAll('.carousel-slide');
+  const dots = dotsEl.querySelectorAll('span');
+
+  // 2. State Management
+  function updateState(nextIndex) {
+    if (nextIndex === currentIndex) return;
+
+    slides[currentIndex].classList.remove('active');
+    dots[currentIndex].classList.remove('active');
+
+    currentIndex = nextIndex;
+
+    slides[currentIndex].classList.add('active');
+    dots[currentIndex].classList.add('active');
+  }
+
+  // 3. Event Listeners
   document.getElementById('carousel-prev').addEventListener('click', () => {
-    clearInterval(timer);
-    goTo(pos - 1);
-  });
-  document.getElementById('carousel-next').addEventListener('click', () => {
-    clearInterval(timer);
-    goTo(pos + 1);
+    resetTimer();
+    const next = (currentIndex - 1 + total) % total;
+    updateState(next);
   });
 
-  const timer = setInterval(() => goTo(pos + 1), 3000);
-  setPos(pos, false);
+  document.getElementById('carousel-next').addEventListener('click', () => {
+    resetTimer();
+    const next = (currentIndex + 1) % total;
+    updateState(next);
+  });
+
+  // 4. Automation
+  let autoTimer = setInterval(() => updateState((currentIndex + 1) % total), 5000);
+
+  function resetTimer() {
+    clearInterval(autoTimer);
+    autoTimer = setInterval(() => updateState((currentIndex + 1) % total), 5000);
+  }
 })();
+
+// ── Existing form logic remains untouched ──
+const planSelect = document.getElementById('plan');
+if (planSelect) {
+  planSelect.addEventListener('change', () => planSelect.classList.add('has-value'));
+}
+
+document.querySelectorAll('a[data-plan]').forEach((btn) => {
+  btn.addEventListener('click', (e) => {
+    e.preventDefault();
+    document.getElementById('plan').value = btn.dataset.plan;
+    document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });
+    setTimeout(() => document.getElementById('message').focus(), 600);
+  });
+});
