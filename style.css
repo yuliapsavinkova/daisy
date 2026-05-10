@@ -132,6 +132,28 @@ section:nth-child(even) {
   background: var(--gold);
   color: var(--paper);
 }
+/* ghost — for dark backgrounds (page-hero, cta-strip) */
+.btn-ghost {
+  display: inline-block;
+  padding: 0.8rem 1.75rem;
+  font-family: var(--f-sans);
+  font-size: var(--text-small);
+  font-weight: 500;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  text-align: center;
+  cursor: pointer;
+  color: rgba(255, 255, 255, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  background: transparent;
+  transition:
+    color 0.2s,
+    border-color 0.2s;
+}
+.btn-ghost:hover {
+  color: rgba(255, 255, 255, 0.9);
+  border-color: rgba(255, 255, 255, 0.45);
+}
 
 /* ─── hero ──────────────────────────────────────────────── */
 .hero {
@@ -241,7 +263,7 @@ section:nth-child(even) {
 }
 
 /* ─── how it works ──────────────────────────────────────── */
-.how-it-works {
+section.how-it-works {
   background: var(--ink);
   padding: 1rem 0;
 }
@@ -739,6 +761,120 @@ footer span:last-child {
   color: rgba(255, 255, 255, 0.7);
 }
 
+/* USED IN SECOND HTML PAGE */
+/* ─── page hero (inner pages — no carousel) ─────────────── */
+.page-hero {
+  background: #1e1812;
+  padding: max(4rem, calc(2.5rem + env(safe-area-inset-top))) var(--pad) 3.5rem;
+  text-align: center;
+}
+.page-hero-inner {
+  max-width: 42rem;
+  margin-inline: auto;
+  animation: rise 1.3s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+.back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: var(--text-small);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.35);
+  margin-bottom: 2.25rem;
+  transition: color 0.2s;
+}
+.back-link:hover {
+  color: rgba(255, 255, 255, 0.65);
+}
+.page-hero h1 {
+  font-family: var(--f-serif);
+  font-size: clamp(2.4rem, 5vw, 4rem);
+  font-weight: 300;
+  font-style: italic;
+  color: #fff;
+  line-height: 1.1;
+  margin-bottom: 1.25rem;
+}
+.page-hero .sub {
+  font-size: var(--text-body);
+  color: rgba(255, 255, 255, 0.55);
+  line-height: 1.75;
+  margin-bottom: 2.25rem;
+}
+/* row of CTA buttons, used in page-hero and cta-strip */
+.hero-cta-row {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+/* ─── pull quote ─────────────────────────────────────────── */
+.pullquote {
+  border-left: 2px solid var(--gold-light);
+  margin: 2rem 0;
+  padding: 0.25rem 0 0.25rem 1.5rem;
+}
+.pullquote p {
+  font-family: var(--f-serif);
+  font-size: 1.1rem;
+  font-style: italic;
+  color: var(--ink);
+  line-height: 1.75;
+  margin-bottom: 0.5rem;
+}
+.pullquote cite {
+  font-family: var(--f-sans);
+  font-size: var(--text-small);
+  font-style: normal;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+
+/* ─── dark cta strip ─────────────────────────────────────── */
+section.cta-strip {
+  background: var(--ink);
+  padding: var(--section-y) var(--pad);
+  text-align: center;
+}
+.cta-strip .label {
+  color: var(--gold-light);
+}
+.cta-strip .label::before,
+.cta-strip .label::after {
+  background: var(--label-separator);
+}
+.cta-strip h2 {
+  font-family: var(--f-serif);
+  font-size: clamp(2rem, 4vw, 3.2rem);
+  font-weight: 300;
+  font-style: italic;
+  color: #fff;
+  margin-bottom: 0.5rem;
+}
+.cta-strip .cta-sub {
+  font-size: var(--text-body);
+  color: rgba(255, 255, 255, 0.45);
+  margin-bottom: 2rem;
+}
+/* btn-fill and btn-ghost behave differently on dark backgrounds */
+.cta-strip .btn-fill,
+.page-hero .btn-fill {
+  background: var(--gold);
+  border-color: var(--gold);
+  color: var(--paper);
+}
+.cta-strip .btn-fill:hover,
+.page-hero .btn-fill:hover {
+  background: var(--paper);
+  border-color: var(--paper);
+  color: var(--ink);
+}
+/* USED IN SECOND HTML PAGE - END */
+
 /* ─── responsive ────────────────────────────────────────── */
 @media (max-width: 54rem) {
   .plans-grid {
@@ -790,16 +926,24 @@ footer span:last-child {
   .footer-links {
     justify-content: center;
   }
+  .split-grid {
+    grid-template-columns: 1fr;
+    gap: 1.75rem;
+  }
+  .hero-cta-row {
+    flex-direction: column;
+    align-items: center;
+  }
+  .hero-cta-row .btn,
+  .hero-cta-row .btn-ghost {
+    width: 100%;
+    max-width: 18rem;
+  }
 }
 
 .logo-top {
   width: 3rem;
   height: 3rem;
-  /* display: block; */
-  /* width: 3.5rem;
-  height: 3.5rem;
-  opacity: 0.7;
-  margin: 0 auto 0.5rem; */
 }
 
 .footer-brand {
