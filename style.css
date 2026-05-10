@@ -265,13 +265,6 @@ section:nth-child(even) {
   align-items: baseline;
   gap: 0.75rem;
 }
-.step:nth-child(2n) {
-  border-right: none;
-}
-.step:nth-child(3),
-.step:nth-child(4) {
-  border-bottom: none;
-}
 .step:last-child:nth-child(odd) {
   grid-column: 1 / -1;
   justify-content: center;
@@ -766,12 +759,7 @@ footer span:last-child {
     width: 100%;
   }
   .step {
-    border-right: none !important;
-    border-bottom: 1px solid rgba(196, 168, 130, 0.12) !important;
     padding: 1.1rem 1.5rem;
-  }
-  .step:last-child {
-    border-bottom: none !important;
   }
   .step:last-child:nth-child(odd) {
     justify-content: flex-start;
@@ -779,11 +767,6 @@ footer span:last-child {
   .step p {
     font-size: var(--text-body);
     line-height: 1.5;
-  }
-  .hero-available {
-    padding-left: 0;
-    border-left: none;
-    margin-left: 0;
   }
 }
 @media (max-width: 40rem) {
