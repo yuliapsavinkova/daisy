@@ -92,10 +92,10 @@ export default defineConfig({
       include: /photos\/.*\.(jpg|jpeg|png|webp|JPG|JPEG|PNG)/,
       defaultDirectives: () =>
         new URLSearchParams({
-          w: '1600;1200;800;640;480',
+          w: '1600;1200;800;700;640;480', // ADD 700
           aspect: '3:2',
           fit: 'cover',
-          quality: '70',
+          quality: '65', // DROP from 70 → 65 (addresses the compression warning)
           as: 'metadata',
         }),
     }),

@@ -22,6 +22,10 @@
 
   const sortedKeys = Object.keys(webpModules).sort();
 
+  // Consistent sizes string across both sources — 50vw lets the browser
+  // calculate the exact slot size at any viewport (no hardcoded px guess)
+  const sizes = '(min-width: 768px) 50vw, 98vw';
+
   sortedKeys.forEach((path, i) => {
     const webpMeta = webpModules[path];
     const jpegMeta = jpegModules[path];
@@ -37,7 +41,7 @@
     webpSource.type = 'image/webp';
     // Set srcset BEFORE sizes (Safari quirk)
     webpSource.srcset = webpMeta.map((m) => `${m.src} ${m.width}w`).join(', ');
-    webpSource.sizes = '(min-width: 768px) 50vw, 98vw';
+    webpSource.sizes = sizes;
 
     // ── JPEG fallback (older iOS, any browser) ──
     const img = document.createElement('img');
@@ -49,13 +53,19 @@
     if (jpegMeta && Array.isArray(jpegMeta)) {
       // Set srcset BEFORE src — critical for Safari
       img.srcset = jpegMeta.map((m) => `${m.src} ${m.width}w`).join(', ');
-      img.sizes = '(min-width: 1280px) 640px, (min-width: 768px) 50vw, 98vw';
-      // Use a mid-size image as src fallback (not the largest)
-      const mid = jpegMeta.find((m) => m.width === 800) ?? jpegMeta[0];
+      img.sizes = sizes;
+      // Use 700w as mid-size src fallback — matches the new vite config breakpoint
+      const mid =
+        jpegMeta.find((m) => m.width === 700) ??
+        jpegMeta.find((m) => m.width === 800) ??
+        jpegMeta[0];
       img.src = mid.src;
     } else {
       // Last resort: use webp src if no jpeg available
-      const mid = webpMeta.find((m) => m.width === 800) ?? webpMeta[0];
+      const mid =
+        webpMeta.find((m) => m.width === 700) ??
+        webpMeta.find((m) => m.width === 800) ??
+        webpMeta[0];
       img.src = mid.src;
     }
 
