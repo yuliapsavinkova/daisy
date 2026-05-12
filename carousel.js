@@ -44,11 +44,12 @@
     img.alt = 'Gallery photo';
     img.loading = i < 2 ? 'eager' : 'lazy';
     img.decoding = 'async';
+    if (i === 0) img.setAttribute('fetchpriority', 'high');
 
     if (jpegMeta && Array.isArray(jpegMeta)) {
       // Set srcset BEFORE src — critical for Safari
       img.srcset = jpegMeta.map((m) => `${m.src} ${m.width}w`).join(', ');
-      img.sizes = '(min-width: 768px) 50vw, 98vw';
+      img.sizes = '(min-width: 1280px) 640px, (min-width: 768px) 50vw, 98vw';
       // Use a mid-size image as src fallback (not the largest)
       const mid = jpegMeta.find((m) => m.width === 800) ?? jpegMeta[0];
       img.src = mid.src;
