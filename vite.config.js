@@ -1,42 +1,19 @@
 import { defineConfig } from 'vite';
-import { VitePWA } from 'vite-plugin-pwa';
-import viteImagemin from 'vite-plugin-imagemin';
+import { imagetools } from 'vite-imagetools';
 
 export default defineConfig({
-  root: './',
-  assetsInclude: ['**/*.jpg', '**/*.jpeg', '**/*.png', '**/*.webp'],
   plugins: [
-    VitePWA({
-      registerType: 'autoUpdate',
-      injectRegister: 'script-defer',
-      includeAssets: ['favicon.svg', 'sitemap.xml', 'robots.txt'],
-      manifest: {
-        name: 'Yulia Sitter',
-        short_name: 'Yulia',
-        theme_color: '#8b6f47',
-        icons: [
-          {
-            src: 'favicon.svg',
-            sizes: 'any',
-            type: 'image/svg+xml',
-          },
-        ],
-      },
-    }),
-    viteImagemin({
-      mozjpeg: { quality: 80 },
-      pngquant: { quality: [0.7, 0.8] },
-      webp: { quality: 80 },
+    imagetools({
+      include: /photos\/.*\.(jpg|jpeg|png|webp|JPG|JPEG|PNG)/,
+      defaultDirectives: () =>
+        new URLSearchParams({
+          w: '1600;1200;800;480', // Optimized range for 50vw-100vw
+          aspect: '3:2',
+          fit: 'cover',
+          format: 'webp',
+          quality: '70',
+          as: 'metadata',
+        }),
     }),
   ],
-  build: {
-    outDir: 'dist',
-    rollupOptions: {
-      input: {
-        main: './index.html',
-        nested: './404.html',
-        california: './long-term-house-sitter-california/index.html',
-      },
-    },
-  },
 });

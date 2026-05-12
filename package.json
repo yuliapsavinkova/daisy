@@ -4,14 +4,14 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "resize": "node scripts/resize-photos.js",
-    "build": "node scripts/resize-photos.js && vite build",
-    "preview": "vite preview"
+    "build": "vite build",
+    "preview": "vite preview",
+    "clean": "rm -rf node_modules/.vite dist && pnpm build"
   },
   "devDependencies": {
-    "sharp": "^0.33.0",
-    "vite": "^5.0.0",
-    "vite-plugin-imagemin": "^0.6.1",
-    "vite-plugin-pwa": "^1.2.0"
+    "sharp": "^0.33.5",
+    "vite": "^5.4.0",
+    "vite-imagetools": "^10.0.0",
+    "vite-plugin-pwa": "^0.20.0"
   }
 }
