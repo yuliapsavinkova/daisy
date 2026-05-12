@@ -20,6 +20,9 @@
     slide.className = `carousel-slide ${i === 0 ? 'active' : ''}`;
 
     const img = document.createElement('img');
+    // Use the smallest or second-smallest image as the fallback src
+    const fallback = meta[2]?.src || meta[0].src;
+    img.src = fallback;
     img.srcset = meta.map((m) => `${m.src} ${m.width}w`).join(', ');
 
     // Desktop: 50vw | Mobile: 98vw
@@ -27,7 +30,7 @@
 
     img.src = meta[1]?.src || meta[0].src;
     img.alt = 'Gallery photo';
-    img.loading = i === 0 ? 'eager' : 'lazy';
+    img.loading = i < 2 ? 'eager' : 'lazy';
 
     slide.appendChild(img);
     track.appendChild(slide);

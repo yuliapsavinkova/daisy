@@ -49,6 +49,9 @@
   height: 100%;
   object-fit: cover;
   display: block;
+  /* Force iOS GPU rendering */
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
 }
 
 /* ── Clean Glass Buttons ── */
