@@ -3,39 +3,64 @@
   const dotsEl = document.getElementById('carousel-dots');
   if (!track || !dotsEl) return;
 
-  // Clear existing content for hot-reloading stability
   track.innerHTML = '';
   dotsEl.innerHTML = '';
 
-  const imageModules = import.meta.glob('./photos/*.{jpg,jpeg,png,webp,JPG,JPEG,PNG}', {
+  // Webp variants (modern browsers)
+  const webpModules = import.meta.glob('./photos/*.{jpg,jpeg,png,JPG,JPEG,PNG}', {
     eager: true,
-    query: { as: 'metadata' },
+    query: { as: 'metadata', format: 'webp' },
     import: 'default',
   });
 
-  const sortedKeys = Object.keys(imageModules).sort();
+  // JPEG fallback (Safari / older iOS)
+  const jpegModules = import.meta.glob('./photos/*.{jpg,jpeg,png,JPG,JPEG,PNG}', {
+    eager: true,
+    query: { as: 'metadata', format: 'jpeg' },
+    import: 'default',
+  });
+
+  const sortedKeys = Object.keys(webpModules).sort();
 
   sortedKeys.forEach((path, i) => {
-    const meta = imageModules[path];
-    if (!meta || !Array.isArray(meta)) return;
+    const webpMeta = webpModules[path];
+    const jpegMeta = jpegModules[path];
+    if (!webpMeta || !Array.isArray(webpMeta)) return;
 
     const slide = document.createElement('div');
-    slide.className = `carousel-slide ${i === 0 ? 'active' : ''}`;
+    slide.className = `carousel-slide${i === 0 ? ' active' : ''}`;
 
+    const picture = document.createElement('picture');
+
+    // ── WebP source (Chrome, Firefox, modern Safari) ──
+    const webpSource = document.createElement('source');
+    webpSource.type = 'image/webp';
+    // Set srcset BEFORE sizes (Safari quirk)
+    webpSource.srcset = webpMeta.map((m) => `${m.src} ${m.width}w`).join(', ');
+    webpSource.sizes = '(min-width: 768px) 50vw, 98vw';
+
+    // ── JPEG fallback (older iOS, any browser) ──
     const img = document.createElement('img');
-
-    // iPhone Fix: Provide a clean string URL for the primary src
-    img.src = meta[1]?.src || meta[0].src;
-    img.srcset = meta.map((m) => `${m.src} ${m.width}w`).join(', ');
-
-    // Match CSS: 50vw on wide screens, 98vw on mobile
-    img.sizes = '(min-width: 768px) 50vw, 98vw';
     img.alt = 'Gallery photo';
-
-    // Eager load the first two slides for speed, lazy load the rest
     img.loading = i < 2 ? 'eager' : 'lazy';
+    img.decoding = 'async';
 
-    slide.appendChild(img);
+    if (jpegMeta && Array.isArray(jpegMeta)) {
+      // Set srcset BEFORE src — critical for Safari
+      img.srcset = jpegMeta.map((m) => `${m.src} ${m.width}w`).join(', ');
+      img.sizes = '(min-width: 768px) 50vw, 98vw';
+      // Use a mid-size image as src fallback (not the largest)
+      const mid = jpegMeta.find((m) => m.width === 800) ?? jpegMeta[0];
+      img.src = mid.src;
+    } else {
+      // Last resort: use webp src if no jpeg available
+      const mid = webpMeta.find((m) => m.width === 800) ?? webpMeta[0];
+      img.src = mid.src;
+    }
+
+    picture.appendChild(webpSource);
+    picture.appendChild(img);
+    slide.appendChild(picture);
     track.appendChild(slide);
 
     const dot = document.createElement('span');
@@ -60,11 +85,9 @@
   document.getElementById('carousel-prev')?.addEventListener('click', () => {
     updateState((currentIndex - 1 + slides.length) % slides.length);
   });
-
   document.getElementById('carousel-next')?.addEventListener('click', () => {
     updateState((currentIndex + 1) % slides.length);
   });
 
-  // Auto-play every 5 seconds
   setInterval(() => updateState((currentIndex + 1) % slides.length), 5000);
 })();

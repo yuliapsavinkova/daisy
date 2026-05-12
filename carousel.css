@@ -107,3 +107,18 @@
 .carousel-dots span.active {
   background: #fff;
 }
+
+.carousel-slide picture {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.carousel-slide picture img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+}
