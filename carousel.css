@@ -11,16 +11,19 @@
 /* ── The Image Window ── */
 .carousel-viewport {
   position: relative;
-  width: clamp(300px, 98%, 1400px); /* iPhone responsive fix */
+  width: 98%; /* Default for iPhone/Mobile */
   aspect-ratio: 3 / 2;
   overflow: hidden;
   border-radius: 1rem;
-  background: #1a1a1a;
+  background-color: #1a1a1a !important; /* Force dark background */
+  margin: 0 auto;
 }
 
+/* Desktop Fix: Strict 50% width for wide screens */
 @media (min-width: 768px) {
   .carousel-viewport {
-    width: 50vw;
+    width: 50vw !important;
+    max-width: 1200px;
   }
 }
 
@@ -28,6 +31,7 @@
   width: 100%;
   height: 100%;
   position: relative;
+  background-color: #1a1a1a !important;
 }
 
 /* ── Slides ── */
@@ -49,12 +53,12 @@
   height: 100%;
   object-fit: cover;
   display: block;
-  /* Force iOS GPU rendering */
+  /* iPhone Safari Fix: Force hardware acceleration */
   -webkit-transform: translateZ(0);
   transform: translateZ(0);
 }
 
-/* ── Clean Glass Buttons ── */
+/* ── Navigation ── */
 .carousel-prev-wrap,
 .carousel-next-wrap {
   position: absolute;
@@ -77,50 +81,29 @@
   width: 2.6rem;
   height: 2.6rem;
   border-radius: 50%;
-  background: rgba(255, 255, 255, 0.08);
+  background: rgba(0, 0, 0, 0.3);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  color: rgba(255, 255, 255, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: white;
   cursor: pointer;
-  transition: all 0.3s ease;
-
-  font-family: sans-serif;
-  font-size: 1.3rem;
-  line-height: 1;
+  border: none;
 }
 
-.carousel-btn:hover {
-  background: rgba(255, 255, 255, 0.18);
-  color: #fff;
-  border-color: rgba(255, 255, 255, 0.4);
-}
-
-/* ── Dots ── */
 .carousel-dots {
   display: flex;
   gap: 0.6rem;
+  margin-top: 0.5rem;
 }
 
 .carousel-dots span {
-  width: 0.45rem;
-  height: 0.45rem;
+  width: 8px;
+  height: 8px;
   border-radius: 50%;
   background: rgba(255, 255, 255, 0.2);
   cursor: pointer;
-  transition: all 0.4s ease;
 }
 
 .carousel-dots span.active {
   background: #fff;
-  transform: scale(1.3);
-}
-
-/* Mobile Tweaks */
-@media (max-width: 540px) {
-  .carousel-btn {
-    width: 2.2rem;
-    height: 2.2rem;
-    font-size: 1.1rem;
-  }
 }
