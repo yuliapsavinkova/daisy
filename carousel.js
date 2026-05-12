@@ -75,11 +75,20 @@
 
   function updateState(nextIndex) {
     if (currentIndex === nextIndex || !slides[nextIndex]) return;
-    slides[currentIndex].classList.remove('active');
+
+    const outgoing = slides[currentIndex];
+    const incoming = slides[nextIndex];
+
     dots[currentIndex].classList.remove('active');
     currentIndex = nextIndex;
-    slides[currentIndex].classList.add('active');
     dots[currentIndex].classList.add('active');
+
+    // Bring incoming slide on top and fade it in
+    incoming.classList.add('active');
+    // Fade out the outgoing slide, then drop it behind
+    outgoing.classList.remove('active');
+    // Keep it visually layered until transition ends so there's no pop
+    outgoing.style.zIndex = '0';
   }
 
   document.getElementById('carousel-prev')?.addEventListener('click', () => {
