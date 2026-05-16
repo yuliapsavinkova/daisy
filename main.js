@@ -1,4 +1,5 @@
 import './carousel.js';
+import './form.js';
 
 // --- 1. PLAN SELECTION & FORM FOCUS ---
 document.querySelectorAll('a[data-plan]').forEach((btn) => {
