@@ -4,7 +4,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 1.25rem;
+  /* gap: 1.25rem; */
   width: 100%;
 }
 
@@ -85,15 +85,19 @@
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
   border: 1px solid rgba(255, 255, 255, 0.2);
-  color: white;
+  color: var(--white-font-color);
   cursor: pointer;
   border: none;
 }
 
 .carousel-dots {
+  position: absolute;
+  bottom: 0.8rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 20;
   display: flex;
   gap: 0.6rem;
-  margin-top: 0.5rem;
 }
 
 .carousel-dots span {
@@ -106,7 +110,7 @@
 }
 
 .carousel-dots span.active {
-  background: #fff;
+  background: var(--white-font-color);
 }
 
 .carousel-slide picture {

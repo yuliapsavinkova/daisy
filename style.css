@@ -2,7 +2,8 @@ html {
   /* FIX: old max was 17px — invisible growth on wide/4K screens.
      New: scales from 15px → 22px across the viewport range.
      13" Mac (~1280px): ~16px  |  1440p: ~18px  |  4K: 22px cap. */
-  font-size: clamp(14px, 1.2vw, 22px);
+  /* font-size: clamp(14px, 1.2vw, 22px); */
+  font-size: clamp(14px, 0.95vw, 18px);
   scroll-behavior: smooth;
   box-sizing: border-box;
 }
@@ -35,6 +36,7 @@ a {
   --site-width-wide: clamp(520px, 78vw, 1400px); /* cards/forms  */
   --pad: 1.5rem;
   --section-y: 6rem;
+  --white-font-color: rgba(255, 255, 255, 0.82);
 
   --f-serif: 'Cormorant Garamond', serif;
   --f-sans: 'DM Sans', sans-serif;
@@ -184,22 +186,31 @@ section:nth-child(even) {
   align-items: center;
   gap: 0.5rem;
 }
+
 .hero-text .brand {
   font-family: var(--f-serif);
   font-size: clamp(3rem, 5vw, 7rem);
   font-weight: 300;
   font-style: italic;
-  color: #fff;
+  color: var(--white-font-color);
   line-height: 0.95;
   margin-bottom: 0;
 }
+
 .hero-text h1 {
   font-family: var(--f-serif);
   font-size: clamp(2rem, 3vw, 4rem);
   font-weight: 300;
   font-style: italic;
-  color: rgba(255, 255, 255, 0.82);
+  color: var(--white-font-color);
   line-height: 1.2;
+}
+
+.hero-text h2 {
+  color: var(--white-font-color);
+  font-size: var(--text-body);
+  font-weight: 400;
+  letter-spacing: 0.14em;
 }
 
 .hero-location {
@@ -293,12 +304,13 @@ section.how-it-works {
 }
 .step-n {
   font-family: var(--f-serif);
-  font-size: 0.9rem;
+  font-size: 2rem;
   font-style: italic;
   color: var(--gold-light);
-  opacity: 0.7;
+  opacity: 0.18;
   line-height: 1;
   flex-shrink: 0;
+  user-select: none;
 }
 .step p {
   font-size: var(--text-body);
@@ -335,23 +347,6 @@ section.how-it-works {
   text-transform: uppercase;
   color: var(--gold);
   margin-right: 0.5rem;
-}
-.about-pills {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 0.5rem;
-}
-.about-pills span {
-  font-size: var(--text-small);
-  font-weight: 500;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--gold);
-  border: 1px solid var(--rule);
-  border-radius: 1rem;
-  padding: 0.35rem 0.85rem;
-  background: var(--paper);
 }
 
 /* ─── services ──────────────────────────────────────────── */
@@ -910,14 +905,6 @@ section.cta-strip {
     grid-template-columns: 1fr;
     gap: 2rem;
   }
-  .about-pills {
-    gap: 0.35rem;
-  }
-  .about-pills span {
-    font-size: 0.7rem;
-    padding: 0.25rem 0.65rem;
-    letter-spacing: 0.08em;
-  }
   footer {
     flex-direction: column;
     gap: 0.75rem;
@@ -994,5 +981,89 @@ section.cta-strip {
   to {
     opacity: 1;
     transform: scale(1);
+  }
+}
+
+.plan-badge {
+  display: inline-block;
+  margin-bottom: 1rem;
+  padding: 0.35rem 0.7rem;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  opacity: 0.8;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.plan-price {
+  display: flex;
+  align-items: baseline;
+  gap: 0.35rem;
+  margin: 1rem 0;
+}
+
+.price {
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  line-height: 1;
+}
+
+.price-period {
+  font-size: 1rem;
+  opacity: 0.7;
+}
+
+/* Shared pills */
+.pills {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.75rem;
+  margin-top: 1.75rem;
+}
+
+.pills span {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 0.35rem 0.85rem;
+
+  border-radius: 1rem;
+
+  font-size: var(--text-small);
+  font-weight: 400;
+  letter-spacing: 0.12em;
+
+  white-space: nowrap;
+}
+
+/* Hero pills on dark background */
+.pills-dark span {
+  color: var(--white-font-color);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.04);
+}
+
+/* About pills on light background */
+.pills-light span {
+  color: var(--gold);
+  border: 1px solid var(--rule);
+  background: var(--paper);
+  text-transform: uppercase;
+}
+
+/* Mobile */
+@media (max-width: 640px) {
+  .pills {
+    gap: 0.55rem;
+  }
+
+  .pills span {
+    font-size: 0.7rem;
+    letter-spacing: 0.08em;
+
+    white-space: normal;
+    text-align: center;
   }
 }

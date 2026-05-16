@@ -75,7 +75,7 @@
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
-        "@type": "LocalBusiness",
+        "@type": "ProfessionalService"
         "name": "Yulia — Long-Term Live-In House & Pet Sitter",
         "description": "Professional live-in house and pet sitting throughout California. Specialising in long-term and monthly sits of 30 days or more. Trusted, selective, and background-checked.",
         "url": "https://yulia.sitterjourney.com/",
@@ -174,14 +174,14 @@
           <div class="brand">
             <img src="/favicon.svg" alt="" aria-hidden="true" class="logo-top" />Yulia
           </div>
-          <h1>Long-Term Live-In <span style="white-space: nowrap">House & Pet Sitter</span></h1>
+          <h1>Monthly Live-In <span style="white-space: nowrap">House & Pet Sitter</span></h1>
+          <h2>Long-term care for extended travel, relocations, and seasonal stays.</h2>
           <!-- <p class="hero-location">
             <span class="hero-location-dot"></span>Serving All California Area
             <span class="vertical-separator"> | </span>
             <span class="hero-available-dot"></span>Available from August 6th
           </p> -->
         </div>
-
         <div class="carousel-wrap">
           <div class="carousel-viewport">
             <div id="carousel-track" class="carousel-track"></div>
@@ -196,6 +196,11 @@
           </div>
 
           <div class="carousel-dots" id="carousel-dots"></div>
+        </div>
+        <div class="pills pills-dark">
+          <span>Live-in presence</span>
+          <span>Pets rarely alone more than 3 hours</span>
+          <span>Monthly coverage from $999</span>
         </div>
       </div>
     </div>
@@ -228,6 +233,19 @@
           </div>
         </div>
       </section>
+      <section>
+        <div class="wrap">
+          <p class="label">Designed for extended travel</p>
+
+          <div class="pills pills-light">
+            <span>30+ day trips</span>
+            <span>Snowbirds splitting time between homes</span>
+            <span>Remote work relocation</span>
+            <span>Extended family visits abroad</span>
+            <span>Homes that shouldn’t sit empty</span>
+          </div>
+        </div>
+      </section>
 
       <section class="about">
         <div class="wrap">
@@ -238,18 +256,16 @@
           <div class="about-body">
             <p>
               <strong>Who I am</strong><br />
-              I’m Yulia. I run my own web development company remotely, which means I can work from
-              anywhere — so I do. House-sitting lets me stay in real homes instead of hotels, and
-              gives me the animal connection I can’t have with a traveling lifestyle. It works
-              because I’m genuinely invested in both.
+              I’m Yulia. I work remotely, which allows me to stay present in your home most of the
+              time. Since my current lifestyle doesn’t allow me to have my own pets, each sit is a
+              welcome chance to have that connection again.
             </p>
             <p>
               <strong>Experience &amp; trust</strong><br />
-              I grew up with pets and genuinely enjoy spending time with them. Since this travel
-              lifestyle doesn’t allow me to have my own, each sit is a welcome chance to have that
-              connection again. I’ve been house-sitting full time for over a year, so most
-              situations that come up are things I’ve likely handled before. References and
-              background verification available on request.
+              I grew up with animals and genuinely enjoy spending time with them. I’ve been
+              house-sitting full time for over a year, so most situations that come up are things
+              I’ve likely handled before. References and background verification available on
+              request.
             </p>
             <p>
               <strong>What I ask</strong><br />
@@ -259,7 +275,7 @@
               return.
             </p>
           </div>
-          <div class="about-pills">
+          <div class="pills pills-light">
             <span>Remote worker</span>
             <span>Full-time traveler</span>
             <span>Solo female</span>
@@ -322,9 +338,38 @@
         <div class="wrap-wide">
           <p class="label">Plans & Pricing</p>
           <div class="plans-grid">
+            <div class="plan plan-featured">
+              <h3>Monthly - $999 <span>/ month</span></h3>
+              <p class="plan-desc">Designed for 30+ day travel, relocations, and extended stays.</p>
+              <ul>
+                <li>Full-time live-in presence</li>
+                <li>Pets stay in their normal routine</li>
+                <li>Pets rarely alone more than 3 hours</li>
+                <li>Daily photo & video updates</li>
+                <li>Home occupied and maintained</li>
+                <li>No platform fees</li>
+              </ul>
+              <a href="#contact" class="btn btn-fill" data-plan="Monthly"
+                >Check Monthly Availability</a
+              >
+            </div>
+
             <div class="plan">
-              <h3>Basic - $0</h3>
-              <p class="plan-desc">
+              <h3>Custom Stays</h3>
+              <p class="plan-desc">Shorter trips, multi-pet households, or complex care needs.</p>
+              <ul>
+                <li>Short-term sits</li>
+                <li>3+ pets</li>
+                <li>Medication schedules</li>
+                <li>Vet visits or special routines</li>
+                <li>Custom travel requirements</li>
+              </ul>
+              <a href="#contact" class="btn btn-outline" data-plan="Custom">Request Custom Quote</a>
+            </div>
+
+            <div class="plan">
+              <h3>TrustedHousesitters</h3>
+              <!-- <p class="plan-desc">
                 Book via
                 <a
                   href="https://www.trustedhousesitters.com/refer/RAF943607"
@@ -332,12 +377,15 @@
                   rel="noopener noreferrer"
                   >TrustedHousesitters</a
                 >
+              </p> -->
+              <p class="plan-desc">
+                Mutual exchange option for sits that align with my route and schedule.
               </p>
               <ul>
-                <li class="shared">All basic services included</li>
-                <li class="shared">I stay in your home during your trip</li>
+                <li>No direct payment</li>
+                <li>Requires THS membership</li>
                 <li>Works for my targeted destinations</li>
-                <li>You must be a TrustedHousesitters member to invite me</li>
+                <li>Best for flexible travel dates</li>
                 <li>
                   I offer a
                   <a
@@ -354,49 +402,18 @@
                 target="_blank"
                 rel="noopener noreferrer"
                 class="btn btn-outline"
-                >Book THS Sit</a
+                >TrustedHousesitters</a
               >
-            </div>
-
-            <div class="plan plan-featured">
-              <h3>Monthly - $999 <span>/ month</span></h3>
-              <p class="plan-desc">Direct booking — 30+ days</p>
-              <ul>
-                <li class="shared">All basic services included</li>
-                <li class="shared">I stay in your home during your trip</li>
-                <li>Your pets never left alone for more than 3 hours</li>
-                <li>Private arrangement — no platform fees</li>
-                <li>Best value for extended travel or remote work trips</li>
-              </ul>
-              <a href="#contact" class="btn btn-fill" data-plan="Monthly">Book Monthly Sit</a>
-            </div>
-
-            <div class="plan">
-              <h3>Custom</h3>
-              <p class="plan-desc">Direct booking - short stays</p>
-              <ul>
-                <li class="shared">All basic services included</li>
-                <li class="shared">I stay in your home during your trip</li>
-                <li>Shorter stays</li>
-                <li>
-                  Any unique or special care, like:
-                  <ul>
-                    <li>3+ pets</li>
-                    <li>Dogs requiring separate walks</li>
-                    <li>Vet appointments</li>
-                  </ul>
-                </li>
-              </ul>
-              <a href="#contact" class="btn btn-outline" data-plan="Custom">Book Custom Sit</a>
             </div>
           </div>
         </div>
       </section>
+
       <section>
         <div class="wrap">
           <p class="label">Common questions</p>
           <dl class="faq">
-            <div class="faq-item">
+            <!-- <div class="faq-item">
               <dt>What’s the difference between TrustedHousesitters and a direct booking?</dt>
               <dd>
                 TrustedHousesitters is a mutual exchange — no money changes hands, and it works well
@@ -404,6 +421,13 @@
                 need guaranteed availability, your location isn’t on my current route, or you prefer
                 a private arrangement outside a platform. Both options get you the same standard of
                 care.
+              </dd>
+            </div> -->
+            <div class="faq-item">
+              <dt>Where do you sit?</dt>
+              <dd>
+                I currently serve all of California. For monthly sits, distance usually isn’t a
+                barrier.
               </dd>
             </div>
             <div class="faq-item">
@@ -495,8 +519,8 @@
 
       <section id="contact" class="contact">
         <div class="wrap">
-          <p class="label">Get in touch</p>
-          <h2>Let's talk about your next trip</h2>
+          <p class="label">Check Monthly Availability</p>
+          <h2>Planning an extended trip?</h2>
           <p class="contact-sub">
             Tell me your travel dates, location, pets, and any special needs.
           </p>
