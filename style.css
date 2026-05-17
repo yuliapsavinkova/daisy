@@ -431,7 +431,7 @@ section.how-it-works {
 .plan li {
   position: relative;
   padding-left: 1rem;
-  font-size: var(--text-small);
+  font-size: var(--text-body);
   color: var(--ink-soft);
   line-height: 1.55;
   margin-bottom: 0.4rem;
