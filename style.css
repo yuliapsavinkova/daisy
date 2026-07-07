@@ -337,6 +337,17 @@ section.how-it-works {
   margin-right: 0.5rem;
 }
 
+.about-body a {
+  color: var(--gold);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  transition: opacity 0.2s ease;
+}
+
+.about-body a:hover {
+  opacity: 0.75;
+}
+
 /* ─── services ──────────────────────────────────────────── */
 .services-grid {
   display: grid;
